@@ -321,13 +321,13 @@ const Header = () => {
                     exit="hidden"
                     variants={dropdownVariants}
                   >
-                    {item.items.map((subItem, subIndex) => (
+                    {item.items && item.items.map((subItem, subIndex) => (
                       <DropdownItem 
                         key={subItem.name}
                         variants={itemVariants}
                         transition={{ delay: subIndex * 0.05 }}
                       >
-                        <Link to={subItem.path} onClick={() => setShowServicesDropdown(false)}>
+                        <Link to={subItem.path || '/'} onClick={() => setShowServicesDropdown(false)}>
                           {subItem.name}
                         </Link>
                       </DropdownItem>
@@ -343,7 +343,7 @@ const Header = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link to={item.path}>{item.name}</Link>
+              <Link to={item.path || '/'}>{item.name}</Link>
             </NavItem>
           )
         ))}
@@ -384,10 +384,10 @@ const Header = () => {
                     WebkitTextFillColor: 'transparent'
                   }}>{item.name}</h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                    {item.items.map((subItem) => (
+                    {item.items && item.items.map((subItem) => (
                       <Link 
                         key={subItem.name} 
-                        to={subItem.path}
+                        to={subItem.path || '/'}
                         onClick={() => setIsMobileMenuOpen(false)}
                         style={{ color: 'rgba(255, 255, 255, 0.8)', textDecoration: 'none' }}
                       >
@@ -403,7 +403,7 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  <Link to={item.path} onClick={() => setIsMobileMenuOpen(false)}>
+                  <Link to={item.path || '/'} onClick={() => setIsMobileMenuOpen(false)}>
                     {item.name}
                   </Link>
                 </NavItem>

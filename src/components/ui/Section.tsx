@@ -23,6 +23,10 @@ interface SectionContainerProps {
   overflow: string;
 }
 
+interface SubtitleProps {
+  dark?: boolean;
+}
+
 const SectionContainer = styled.section<SectionContainerProps>`
   padding: 7rem 2rem;
   background-color: ${(props) => (props.dark ? '#111' : '#fff')};
@@ -120,9 +124,9 @@ const Title = styled(motion.h2)<{ textAlign: string; gradient: string }>`
   }
 `;
 
-const Subtitle = styled(motion.p)`
+const Subtitle = styled(motion.p)<SubtitleProps>`
   font-size: 1.3rem;
-  color: ${(props) => (props.theme.dark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)')};
+  color: ${(props) => (props.dark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)')};
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.6;
@@ -194,7 +198,7 @@ const Section = ({
               {subtitle && (
                 <Subtitle
                   variants={itemVariants}
-                  theme={{ dark }}
+                  dark={dark}
                 >
                   {subtitle}
                 </Subtitle>
